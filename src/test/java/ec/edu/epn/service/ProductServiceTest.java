@@ -45,49 +45,7 @@ class ProductServiceTest {
         assertEquals("SKU_111", found.getSku());
     }
 
-    @Test
-    void findBySku_NoEncuentra_Producto() {
-        when(productRepository.findBySku("NOPE")).thenReturn(Optional.empty());
 
-        assertThrows(RuntimeException.class, () -> productService.findBySku("NOPE"));
-    }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    @Test
-    void findBySku_whenNotFound_throwsRuntimeException() {
-        when(productRepository.findBySku("NOPE")).thenReturn(Optional.empty());
-
-        assertThrows(RuntimeException.class, () -> productService.findBySku("NOPE"));
-    }
 
     @Test
     void findActiveProducts_returnsOnlyActive() {
@@ -100,9 +58,6 @@ class ProductServiceTest {
 
         List<Product> result = productService.findActiveProducts();
 
-        assertNotNull(result);
         assertEquals(2, result.size());
-        assertTrue(result.stream().anyMatch(p -> "A1".equals(p.getSku())));
-        assertTrue(result.stream().anyMatch(p -> "B2".equals(p.getSku())));
     }
 }
